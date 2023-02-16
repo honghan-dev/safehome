@@ -30,12 +30,15 @@ To use the app, follow these steps:
     ```
     git clone https://github.com/honghan87/safehome.git
     ```
+    
 2. Install the dependencies.
     ```
-    cd repository
+    cd client and cd web3
     npm install
     ```
+    
 3. Start the development environment.
-```
+    ```
+    cd client
     npm run dev
-```
+    ```
