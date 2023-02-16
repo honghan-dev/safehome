@@ -20,3 +20,8 @@ This web app is built on blockchain technology to provide a secure and transpare
 
 - React: The app frontend is built using React, a popular JavaScript library for building user interfaces.
 
+- Vite: Vite is a build tool that helps you develop and optimize your app. 
+
+- Hardhat: Hardhat is a development environment to compile, deploy, test, and debug your Ethereum software.
+
+    git clone https://github.com/honghan87/safehome.git
