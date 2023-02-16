@@ -24,4 +24,17 @@ This web app is built on blockchain technology to provide a secure and transpare
 
 - Hardhat: Hardhat is a development environment to compile, deploy, test, and debug your Ethereum software.
 
+To use the app, follow these steps:
+
+1. Clone the repository to your local machine.
+
     git clone https://github.com/honghan87/safehome.git
+    
+2. Install the dependencies.
+    
+    cd repository
+    npm install
+    
+3. Start the development environment.
+
+    npm run dev
