@@ -1,0 +1,7 @@
+.active svg {
+	color: red !important;
+}
+
+.active span {
+	color: red !important;
+}
