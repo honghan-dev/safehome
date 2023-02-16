@@ -1,14 +1,13 @@
 import { useMemo, useCallback, useEffect, useState } from "react";
 import { useEthers } from "@usedapp/core";
-import { ZkApp__factory } from "contracts";
-import { BigNumber, BigNumberish } from "ethers";
+import { BigNumber, ContractFactory, ethers } from "ethers";
 
-export const useZKApp = (address: string) => {
+export const useZKApp = (address) => {
   const { account, library, chainId } = useEthers();
   const signer = account ? library?.getSigner(account) : undefined;
   return useMemo(() => {
     if (!library) return undefined;
-    const _contract = ZkApp__factory.connect(address, library);
+    const _contract = ethers.connect(address, library);
     return signer ? _contract.connect(signer) : _contract;
   }, [library, address, signer, chainId]);
 };
@@ -16,7 +15,7 @@ export const useZKApp = (address: string) => {
 /**
  * @dev This fetches data once the react component is rendered
  */
-export const useVerifier = (address: string) => {
+export const useVerifier = (address) => {
   const zkApp = useZKApp(address);
   const [verifier, setVerifier] = useState<string>();
   const { library, chainId } = useEthers();
@@ -37,7 +36,7 @@ export const useVerifier = (address: string) => {
 /**
  * @dev This fetches data every block when the component is mounted
  */
-export const useTotalRecords = (address: string) => {
+export const useTotalRecords = (address) => {
   const zkApp = useZKApp(address);
   const [totalRecords, setTotalRecords] = useState<BigNumber>();
   const { library, chainId } = useEthers();
@@ -70,7 +69,7 @@ export enum TxState {
 /**
  * @dev Contract interfaction example with ZKP
  */
-export const useRecord = (address: string) => {
+export const useRecord = (address) => {
   const zkApp = useZKApp(address);
   const [txState, setTxState] = useState<TxState>(TxState.NONE);
   const { library, chainId, account } = useEthers();
@@ -79,13 +78,6 @@ export const useRecord = (address: string) => {
     async ({
       publicSignals,
       proof,
-    }: {
-      publicSignals: [BigNumberish, BigNumberish, BigNumberish];
-      proof: {
-        a: [BigNumberish, BigNumberish];
-        b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]];
-        c: [BigNumberish, BigNumberish];
-      };
     }) => {
       if (!zkApp || !account) return;
       if (!library) return;

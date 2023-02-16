@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
-import { ZKPClient } from "circuits";
+import { ZKPClient } from "../client";
 
-let cache: ZKPClient | undefined;
+let cache;
 
-function useCircuit(): {
-  client?: ZKPClient;
-} {
-  const [client, setClient] = useState<ZKPClient>();
+function useCircuit() {
+  const [client, setClient] = useState();
 
   useEffect(() => {
     if (!cache) {
       Promise.all([
-        fetch(`${process.env.PUBLIC_URL}/main.wasm`).then((res) =>
+        fetch(`../../../circuits/main_js/main.wasm`).then((res) =>
           res.arrayBuffer()
         ),
-        fetch(`${process.env.PUBLIC_URL}/main.zkey`).then((res) =>
+        fetch(`../../../circuits/main1.zkey`).then((res) =>
           res.arrayBuffer()
         ),
       ]).then(([wasm, zkey]) => {
