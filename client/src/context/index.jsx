@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { ethers } from "ethers";
 
 import { contractABI, contractAddress } from "../utils/constant";
 
-export const ServiceContext = React.createContext();
+export const ServiceContext = createContext();
 
 const { ethereum } = window;
 
@@ -27,6 +27,19 @@ export const ServiceProvider = ({ children }) => {
 	// Current Ethereum wallet address
 	const [currentAccount, setCurrentAccount] = useState("");
 
+	const checkIfWalletIsConnected = async () => {
+		try {
+			if (!ethereum) return alert("Please install metamask");
+			const accounts = await ethereum.request({ method: "eth_accounts" });
+			if (accounts.length) {
+				setCurrentAccount(accounts[0]);
+			}
+		} catch (error) {
+			console.log(error);
+			throw new Error("No ethereum object");
+		}
+	};
+
 	// Connect wallet function
 	const connectWallet = async () => {
 		try {
@@ -35,19 +48,6 @@ export const ServiceProvider = ({ children }) => {
 				method: "eth_requestAccounts",
 			});
 			setCurrentAccount(accounts[0]);
-		} catch (error) {
-			console.log(error);
-			throw new Error("No ethereum object");
-		}
-	};
-
-	const checkIfWalletIsConnected = async () => {
-		try {
-			if (!ethereum) return alert("Please install metamask");
-			const accounts = await ethereum.request({ method: "eth_accounts" });
-			if (accounts.length) {
-				setCurrentAccount(accounts[0]);
-			}
 		} catch (error) {
 			console.log(error);
 			throw new Error("No ethereum object");

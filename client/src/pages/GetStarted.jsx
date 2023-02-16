@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CustomButton } from "../components";
 
-import { connectWallet, currentAccount } from "./../context/index";
+import { ServiceContext } from "./../context";
 
 import { logo } from "./../assets/index";
 
 const GetStarted = () => {
 	const navigate = useNavigate();
+
+	const { connectWallet, currentAccount } = useContext(ServiceContext);
 
 	return (
 		<div className="h-screen bg-[#66A7FF]">
@@ -23,11 +25,12 @@ const GetStarted = () => {
 					btnType="button"
 					title="Connect Wallet"
 					styles={"bg-white w-2/3 h-[52px] text-[#66A7FF]"}
-					handleClick={() => {
+					handleClick={async () => {
 						if (currentAccount) {
 							navigate("user/home");
 						} else {
-							connectWallet();
+							await connectWallet();
+							navigate("user/home");
 						}
 					}}
 				/>
