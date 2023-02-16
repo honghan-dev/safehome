@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Modal from "react-modal";
 
+import { ServiceContext } from "../context";
+
 const CreatePoll = ({ isOpen, closeModal }) => {
+	const { createPoll } = useContext(ServiceContext);
+
 	const customStyles = {
 		content: {
 			top: "50%",
@@ -16,15 +20,16 @@ const CreatePoll = ({ isOpen, closeModal }) => {
 
 	const [formValues, setFormValues] = useState({
 		topic: "",
-		title: "",
 		description: "",
-		endsAt: "",
+		createdAt: new Date().getTime(),
 	});
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		createPoll(formValues);
 		console.log(formValues);
-		setFormValues({ topic: "", title: "", description: "", endsAt: "" });
+		setFormValues({ topic: "", description: "", createdAt: "" });
+		closeModal();
 	};
 
 	const handleInputChange = (event) => {
@@ -50,29 +55,6 @@ const CreatePoll = ({ isOpen, closeModal }) => {
 						type="text"
 						name="topic"
 						value={formValues.topic}
-						onChange={handleInputChange}
-						className="block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-gray-500 focus:outline-none mt-[4px]"
-					/>
-				</div>
-				<div>
-					<label className="text-[14px] mb-[4px]">Title</label>
-					<input
-						type="text"
-						name="title"
-						value={formValues.title}
 						onChange={handleInputChange}
 						className="block
                 w-full

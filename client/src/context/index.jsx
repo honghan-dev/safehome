@@ -26,6 +26,7 @@ export const ServiceProvider = ({ children }) => {
 
 	// Current Ethereum wallet address
 	const [currentAccount, setCurrentAccount] = useState("");
+	const [polls, setPolls] = useState([]);
 
 	const checkIfWalletIsConnected = async () => {
 		try {
@@ -54,11 +55,77 @@ export const ServiceProvider = ({ children }) => {
 		}
 	};
 
+	const fetchPolls = async () => {
+		const serviceContract = getEthereumContract();
+		const pollIds = await serviceContract.getPolls();
+		const newPolls = [];
+
+		for (let i = 0; i < pollIds.length; i++) {
+			const pollId = pollIds[i];
+			const data = await serviceContract.getPollDetails(pollId);
+
+			newPolls.push({
+				id: pollId,
+				topic: data[0],
+				description: data[1],
+				yesCount: data[2],
+				noCount: data[3],
+				totalCount: data[4],
+				createdAt: data[5],
+			});
+		}
+		setPolls(newPolls);
+	};
+
+	// Create a new poll and add it to the polls array
+	const createPoll = async (form) => {
+		const serviceContract = getEthereumContract();
+		await serviceContract.createPoll(
+			form.topic,
+			form.description,
+			form.createdAt
+		);
+		const newPolls = [...polls];
+
+		newPolls.push({
+			id: newPolls.length + 1,
+			topic,
+			description,
+			yesCount: 0,
+			noCount: 0,
+			totalCount: 0,
+			createdAt,
+		});
+
+		setPolls(newPolls);
+	};
+
+	// Vote on a poll
+	const vote = async (pollId, choice) => {
+		const serviceContract = getEthereumContract();
+		await serviceContract.vote(pollId, choice);
+		const newPolls = [...polls];
+
+		const pollIndex = newPolls.findIndex((poll) => poll.id === pollId);
+
+		if (choice) {
+			newPolls[pollIndex].yesCount++;
+		} else {
+			newPolls[pollIndex].noCount++;
+		}
+		newPolls[pollIndex].totalCount++;
+		setPolls(newPolls);
+	};
+
 	return (
 		<ServiceContext.Provider
 			value={{
 				connectWallet,
 				currentAccount,
+				fetchPolls,
+				vote,
+				createPoll,
+				polls,
 			}}
 		>
 			{children}

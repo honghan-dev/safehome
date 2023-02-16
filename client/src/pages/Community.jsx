@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CreatePoll, PollCard } from "./../components";
+import { ServiceContext } from "../context";
 
 const Community = () => {
 	const [isOpen, setIsOpen] = useState(false);
+
+	const { polls, fetchPolls } = useContext(ServiceContext);
 
 	const openModal = () => {
 		setIsOpen(true);
@@ -12,44 +15,18 @@ const Community = () => {
 		setIsOpen(false);
 	};
 
-	// Dummy data
-	const polls = [
-		{
-			topic: "Increase security guard",
-			description: "Increase security guard especially at night",
-			yesCount: 5,
-			noCount: 2,
-		},
-		{
-			topic: "Increase number of rubbish bin",
-			description:
-				"Increase the number of rubbish bin around swimming pool area",
-			yesCount: 6,
-			noCount: 2,
-		},
-		{
-			topic: "Increase number of rubbish bin",
-			description:
-				"Increase the number of rubbish bin around swimming pool area",
-			yesCount: 6,
-			noCount: 2,
-		},
-		{
-			topic: "Increase number of rubbish bin",
-			description:
-				"Increase the number of rubbish bin around swimming pool area",
-			yesCount: 6,
-			noCount: 2,
-		},
-	];
+	useEffect(() => {
+		fetchPolls();
+		console.log(polls);
+	}, []);
 
 	return (
-		<div>
+		<div className="px-[24px] ">
 			<div className="flex justify-between items-center">
 				<span className="text-[20px] font-bold">Community</span>
 				<button
 					onClick={openModal}
-					className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+					className="bg-[#66A7FF] hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
 				>
 					Create a poll
 				</button>
@@ -60,7 +37,7 @@ const Community = () => {
 					/>
 				)}
 			</div>
-			<div className="flex flex-col gap-[16px]">
+			<div className="flex flex-col gap-[16px] mt-[16px]">
 				{polls.map((poll, index) => (
 					<PollCard
 						key={index}

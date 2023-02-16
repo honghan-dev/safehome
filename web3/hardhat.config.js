@@ -5,10 +5,9 @@ require("dotenv").config();
 module.exports = {
 	solidity: "0.8.17",
 	networks: {
-		scrollTestnet: {
-			url: process.env.SCROLL_RPC_URL,
-			accounts: [process.env.WALLET_PRIVATE_KEY],
-			chainId: 534354,
+		goerli: {
+			url: process.env.GOERLI_URL,
+			accounts: [process.env.PRIVATE_KEY],
 		},
 	},
 };
