@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { EdDSA } from "../eddsa";
+import { EdDSA } from "../";
 
 // Enter a valid infura key here to avoid being rate limited
 // You can get a key for free at https://infura.io/register

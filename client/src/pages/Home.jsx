@@ -30,8 +30,12 @@ const Home = () => {
 				message={msgToSign}
 				pubKey={pubKey}
 				signature={eddsaSignature}
-				onResult={(result) => setProof(result)}
+				onResult={async (result) => {
+				await setProof(result);
+				console.log(proof);
+				}}
 			/>
+
 			<h2>Verifying using smart contract</h2>
 			<SendTx
 				address={verifierContract}

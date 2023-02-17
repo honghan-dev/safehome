@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ZKPClient } from "../client";
+import { ZKPClient } from "../";
 
 let cache;
 
