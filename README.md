@@ -18,11 +18,9 @@ This web app is built on blockchain technology to provide a secure and transpare
 
 - Solidity: The app uses Solidity programming language to write smart contracts that govern the behavior of the app.
 
-- React: The app frontend is built using React, a popular JavaScript library for building user interfaces.
+- React: The app frontend is built using React.
 
-- Vite: Vite is a build tool that helps you develop and optimize your app. 
-
-- Hardhat: Hardhat is a development environment to compile, deploy, test, and debug your Ethereum software.
+- Hardhat: A development environment to compile, deploy, test, and debug your Ethereum software.
 
 To use the app, follow these steps:
 
