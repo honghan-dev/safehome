@@ -6,8 +6,6 @@ This web app is built on blockchain technology to provide a secure and transpare
 
 - Residency ownership management: The app allows residents to own and manage their residency on the blockchain, which provides secure and tamper-proof ownership records.
 
-- Facilities management: The app enables property managers to manage the facilities, including maintenance requests, service orders, and billing.
-
 - Community voting: The app provides a democratic voting system for community decisions, such as approving a new service or facility, setting community rules, or electing community leaders.
 
 - Transparent and secure: The app uses blockchain technology to provide a transparent and secure platform for residency ownership and community decision-making.
