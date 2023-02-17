@@ -20,7 +20,7 @@ This web app is built on blockchain technology to provide a secure and transpare
 
 - Hardhat: A development environment to compile, deploy, test, and debug your Ethereum software.
 
- :hammer: To use the app, follow these steps:
+## :hammer: To use the app, follow these steps:
 
 1. Clone the repository to your local machine.
     ```
