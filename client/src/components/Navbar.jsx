@@ -48,7 +48,7 @@ const Navbar = () => {
 					<AboutUs />
 					<button
 						onClick={closeModal}
-						className="bg-white hover:bg-red-700 text-red-500 font-bold py-2 px-4 rounded mt-[1.5rem] border-red-500 border"
+						className="bg-white hover:bg-blue-500 text-blue-500 font-bold py-2 px-4 rounded mt-[1.5rem] border-blue-500 border"
 					>
 						Close
 					</button>
