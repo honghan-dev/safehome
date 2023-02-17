@@ -28,7 +28,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className="flex justify-center mb-[35px] gap-6 bg-[#66A7FF] h-[80px] items-center relative">
+		<div className="flex justify-center mb-[35px] gap-6 bg-[#0069D2] h-[80px] items-center relative">
 			<div className="text-white font-bold text-[20px]">SafeHome</div>
 			<div
 				className="absolute right-[24px]"

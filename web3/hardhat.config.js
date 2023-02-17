@@ -5,9 +5,10 @@ require("dotenv").config();
 module.exports = {
 	solidity: "0.8.17",
 	networks: {
-		goerli: {
-			url: process.env.GOERLI_URL,
+		scrollTestnet: {
+			url: process.env.SCROLL_TESTNET_URL,
 			accounts: [process.env.PRIVATE_KEY],
+			chainId: 534354,
 		},
 	},
 };

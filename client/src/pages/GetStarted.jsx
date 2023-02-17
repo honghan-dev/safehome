@@ -12,7 +12,7 @@ const GetStarted = () => {
 	const { connectWallet, currentAccount } = useContext(ServiceContext);
 
 	return (
-		<div className="h-screen bg-[#66A7FF]">
+		<div className="h-screen bg-[#0052B6]">
 			<div className="flex flex-col justify-end items-center h-3/5">
 				<img
 					src={logo}
@@ -24,13 +24,13 @@ const GetStarted = () => {
 				<CustomButton
 					btnType="button"
 					title="Connect Wallet"
-					styles={"bg-white w-2/3 h-[52px] text-[#66A7FF]"}
+					styles={"bg-white w-2/3 h-[52px] text-[#0052B6]"}
 					handleClick={async () => {
 						if (currentAccount) {
-							navigate("user/home");
+							navigate("/zk");
 						} else {
 							await connectWallet();
-							navigate("user/home");
+							navigate("/zk");
 						}
 					}}
 				/>

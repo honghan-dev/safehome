@@ -1,17 +1,18 @@
 import React, { useEffect, useState, createContext } from "react";
 import { ethers } from "ethers";
 
-import { contractABI, contractAddress } from "../utils/constant";
+import { contractABI, scrollContractAddress } from "../utils/constant";
 
 export const ServiceContext = createContext();
 
 const { ethereum } = window;
 
+// Getting service Contract
 const getEthereumContract = () => {
 	const provider = new ethers.providers.Web3Provider(ethereum);
 	const signer = provider.getSigner();
 	const serviceContract = new ethers.Contract(
-		contractAddress,
+		scrollContractAddress,
 		contractABI,
 		signer
 	);
@@ -26,6 +27,7 @@ export const ServiceProvider = ({ children }) => {
 
 	// Current Ethereum wallet address
 	const [currentAccount, setCurrentAccount] = useState("");
+	const [proved, setProved] = useState(null);
 	const [polls, setPolls] = useState([]);
 
 	const checkIfWalletIsConnected = async () => {
@@ -55,6 +57,8 @@ export const ServiceProvider = ({ children }) => {
 		}
 	};
 
+	//////// VOTING ////////
+
 	const fetchPolls = async () => {
 		const serviceContract = getEthereumContract();
 		const pollIds = await serviceContract.getPolls();
@@ -68,8 +72,8 @@ export const ServiceProvider = ({ children }) => {
 				id: pollId,
 				topic: data[0],
 				description: data[1],
-				yesCount: data[2],
-				noCount: data[3],
+				yesCount: ethers.BigNumber.from(data[2]).toString(),
+				noCount: ethers.BigNumber.from(data[3]).toString(),
 				totalCount: data[4],
 				createdAt: data[5],
 			});
@@ -117,6 +121,36 @@ export const ServiceProvider = ({ children }) => {
 		setPolls(newPolls);
 	};
 
+	//////// BOOKING /////////
+
+	const bookFacility = async (time, facility) => {
+		try {
+			const serviceContract = getEthereumContract();
+			// Check if the facility is available
+			const isAvailable = await serviceContract.isFacilityBooked(
+				time,
+				facility
+			);
+			console.log(isAvailable);
+			if (isAvailable) {
+				throw new Error("The facility is already booked at this time.");
+			}
+			// Book the facility
+			await serviceContract.bookFacility(time, facility);
+			// Wait for the booking to be processed
+			await serviceContract.provider.waitForTransaction(tx.hash);
+			console.log("Facility booked successfully!");
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const getUserBookings = async () => {
+		const serviceContract = getEthereumContract();
+		const userBookings = await serviceContract.getUserBookings();
+		return userBookings;
+	};
+
 	return (
 		<ServiceContext.Provider
 			value={{
@@ -126,6 +160,10 @@ export const ServiceProvider = ({ children }) => {
 				vote,
 				createPoll,
 				polls,
+				bookFacility,
+				getUserBookings,
+				proved,
+				setProved,
 			}}
 		>
 			{children}

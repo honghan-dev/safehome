@@ -12,7 +12,7 @@ const Footer = () => {
 	return (
 		<footer className="fixed h-[80px] p-[24px] bottom-0 w-screen bg-white flex justify-between border-t-[1px]">
 			<NavLink
-				to="/user/home"
+				to="/home"
 				className={`flex flex-col justify-center self-center gap-[4px] `}
 			>
 				<BiHome
@@ -23,7 +23,7 @@ const Footer = () => {
 				<span className="text-xs text-gray-500">Home</span>
 			</NavLink>
 			<NavLink
-				to="/user/community"
+				to="/community"
 				className={`flex flex-col justify-center self-center gap-[4px] `}
 			>
 				<BiGroup
@@ -34,7 +34,7 @@ const Footer = () => {
 				<span className="text-xs text-gray-500">Community</span>
 			</NavLink>
 			<NavLink
-				to="/user/booking"
+				to="/booking"
 				className={`flex flex-col justify-center self-center gap-[4px] `}
 			>
 				<BiCalendarPlus
@@ -45,7 +45,7 @@ const Footer = () => {
 				<span className="text-xs text-gray-500">Booking</span>
 			</NavLink>
 			<NavLink
-				to="/user/notification"
+				to="/notification"
 				className={`flex flex-col justify-center self-center gap-[4px] `}
 			>
 				<BiBell

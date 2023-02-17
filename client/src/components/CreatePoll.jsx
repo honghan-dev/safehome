@@ -100,13 +100,13 @@ const CreatePoll = ({ isOpen, closeModal }) => {
 				<div className="flex justify-between">
 					<button
 						type="submit"
-						className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-[1.5rem]"
+						className="bg-[#0052B6] hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-[1.5rem]"
 					>
 						Create
 					</button>
 					<button
 						onClick={closeModal}
-						className="bg-white hover:bg-red-700 text-red-500 font-bold py-2 px-4 rounded mt-[1.5rem] border-red-500 border"
+						className="bg-white hover:bg-red-700 text-blue-500 font-bold py-2 px-4 rounded mt-[1.5rem] border-blue-500 border"
 					>
 						Close
 					</button>

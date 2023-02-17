@@ -1,65 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ServiceContext } from "../context";
+import { convertTimestampToDate } from "../utils/helper";
+import { CustomButton, PollCard, NewBooking } from "../components";
 
-import { facilities, bookingTime } from "../utils/helper";
-import { InputSelector } from "../components";
+import { loader } from "./../assets";
 
 const Booking = () => {
-	const [selectedFacility, setSelectedFacility] = useState("");
-	const [date, setDate] = useState();
-	const [time, setTime] = useState();
+	const [bookings, setBookings] = useState([]);
+	const [isOpen, setIsOpen] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const { getUserBookings, currentAccount } = useContext(ServiceContext);
+
+	const fetchBookings = async () => {
+		setIsLoading(true);
+		const bookings = await getUserBookings();
+		setBookings(bookings);
+		setIsLoading(false);
+		return bookings;
+	};
+
+	useEffect(() => {
+		fetchBookings();
+	}, [currentAccount]);
 
 	return (
-		<form className="relative flex flex-col gap-[10px]">
-			<div>
-				<span className="mb-[10px]">Choose a facility</span>
-				<InputSelector
-					options={facilities}
-					selected={selectedFacility}
-					setSelected={setSelectedFacility}
+		<div className="px-[24px] overflow-scroll pb-[96px]">
+			<CustomButton
+				btnType="button"
+				title="Book Facility"
+				handleClick={() => setIsOpen(true)}
+				styles={"text-white px-[8px] bg-[#0052B6]"}
+			/>
+			{isOpen && (
+				<NewBooking
+					isOpen={isOpen}
+					closeModal={() => setIsOpen(false)}
 				/>
-			</div>
-			{selectedFacility && (
-				<div className="flex flex-col gap-[10px]">
-					<div>
-						<label className="text-[14px]">Date</label>
-						<input
-							type="date"
-							name="date"
-							value={date}
-							onChange={() => setDate(event.target.value)}
-							className="block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-gray-500 focus:outline-none mt-[4px]"
+			)}
+			{isLoading ? (
+				<div className="flex justify-center items-center mt-[50px]">
+					{
+						<img
+							src={loader}
+							className="w-[56px] h-[56px]"
 						/>
-					</div>
-					<div>
-						<label className="text-[14px]">Time</label>
-						<InputSelector
-							options={bookingTime}
-							selected={time}
-							setSelected={setTime}
+					}
+				</div>
+			) : (
+				<div className="mt-[24px] flex flex-col gap-[16px]">
+					{bookings.map((booking, index) => (
+						<PollCard
+							key={index}
+							topic={booking.facilityName}
+							description={convertTimestampToDate(booking.startTime)}
 						/>
-					</div>
+					))}
 				</div>
 			)}
-			<button
-				type="submit"
-				className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-[24px]"
-			>
-				Book
-			</button>
-		</form>
+		</div>
 	);
 };
 
