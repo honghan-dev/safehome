@@ -29,7 +29,7 @@ const Community = () => {
 	}, []);
 
 	return (
-		<div className="px-[24px] ">
+		<div className="px-[24px] oveflow-scroll mb-[96px]">
 			<div className="flex justify-between items-center">
 				<span className="text-[20px] font-bold">Community</span>
 				<button
