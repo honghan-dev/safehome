@@ -1,12 +1,10 @@
-# Residency Management and Voting Web App
+# Residency Management and Voting Web App 🏢
 
 This web app is built on blockchain technology to provide a secure and transparent platform for residency ownership, facilities management, and community voting. The app is designed to be used by residents, property managers, and community leaders to manage the facilities and make decisions through a democratic voting process.
 
 ## Features
 
 - Residency ownership management: The app allows residents to own and manage their residency on the blockchain, which provides secure and tamper-proof ownership records.
-
-- Facilities management: The app enables property managers to manage the facilities, including maintenance requests, service orders, and billing.
 
 - Community voting: The app provides a democratic voting system for community decisions, such as approving a new service or facility, setting community rules, or electing community leaders.
 
@@ -18,11 +16,9 @@ This web app is built on blockchain technology to provide a secure and transpare
 
 - Solidity: The app uses Solidity programming language to write smart contracts that govern the behavior of the app.
 
-- React: The app frontend is built using React, a popular JavaScript library for building user interfaces.
+- React: The app frontend is built using React.
 
-- Vite: Vite is a build tool that helps you develop and optimize your app. 
-
-- Hardhat: Hardhat is a development environment to compile, deploy, test, and debug your Ethereum software.
+- Hardhat: A development environment to compile, deploy, test, and debug your Ethereum software.
 
 To use the app, follow these steps:
 
