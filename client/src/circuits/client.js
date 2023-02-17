@@ -1,4 +1,4 @@
-import buildCalculator from "../../../circuits/main_js/witness_calculator";
+import builder from "../../../circuits/main_js/witness_calculator.js";
 import { buildBabyjub } from "circomlibjs";
 import * as snarkjs from "snarkjs";
 
@@ -30,7 +30,7 @@ export class ZKPClient {
     // you can adjust the file path here
     [this._zkey, this._calculator, this._babyjub] = await Promise.all([
       zKey,
-      buildCalculator(wasm),
+      builder(wasm),
       buildBabyjub(),
     ]);
     this._zkey.type = "mem";

@@ -1,4 +1,4 @@
-import { ZKPClient } from "./client";
-import { EdDSA } from "./eddsa";
+import { ZKPClient } from "./client.js";
+import { EdDSA } from "./eddsa.js";
 
 export { ZKPClient, EdDSA };

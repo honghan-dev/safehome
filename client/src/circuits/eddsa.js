@@ -1,5 +1,5 @@
 import { buildEddsa, buildBabyjub } from "circomlibjs";
-import { arrayify } from "ethers/lib/utils";
+import { arrayify } from "ethers/lib/utils.js";
 import { BigNumber } from "ethers";
 
 export class EdDSA {
