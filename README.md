@@ -1,4 +1,4 @@
-# Residency Management and Voting Web App
+# Residency Management and Voting Web App 🏢
 
 This web app is built on blockchain technology to provide a secure and transparent platform for residency ownership, facilities management, and community voting. The app is designed to be used by residents, property managers, and community leaders to manage the facilities and make decisions through a democratic voting process.
 
