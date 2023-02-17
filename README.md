@@ -1,8 +1,8 @@
-# Residency Management and Voting Web App 🏢
+# :office: Residency Management and Voting Web App
 
 This web app is built on blockchain technology to provide a secure and transparent platform for residency ownership, facilities management, and community voting. The app is designed to be used by residents, property managers, and community leaders to manage the facilities and make decisions through a democratic voting process.
 
-## Features
+## :star2: Features
 
 - Residency ownership management: The app allows residents to own and manage their residency on the blockchain, which provides secure and tamper-proof ownership records.
 
@@ -10,7 +10,7 @@ This web app is built on blockchain technology to provide a secure and transpare
 
 - Transparent and secure: The app uses blockchain technology to provide a transparent and secure platform for residency ownership and community decision-making.
 
-## Technologies Used
+## :computer: Technologies Used
 
 - Ethereum Blockchain: The app is built on the Ethereum blockchain, which provides a decentralized and tamper-proof platform for data management.
 
@@ -20,7 +20,7 @@ This web app is built on blockchain technology to provide a secure and transpare
 
 - Hardhat: A development environment to compile, deploy, test, and debug your Ethereum software.
 
-To use the app, follow these steps:
+ :hammer: To use the app, follow these steps:
 
 1. Clone the repository to your local machine.
     ```
